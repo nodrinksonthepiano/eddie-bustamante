@@ -24,9 +24,15 @@ document.addEventListener('DOMContentLoaded', () => {
         video.style.maxWidth = options.maxWidth || '100%';
         video.style.height = options.height || 'auto';
         video.style.maxHeight = options.maxHeight || '600px';
-        video.preload = 'metadata';
+        video.preload = 'auto';
         video.playsInline = true;
-        
+
+        // Force load and show first frame
+        video.load();
+        video.addEventListener('loadeddata', () => {
+            video.currentTime = 0.1;
+        });
+
         // Add error handling
         video.addEventListener('error', (e) => {
             console.error('Error loading video:', source, e.target.error);
@@ -43,6 +49,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const video = createVideoElement(source, {
             controls: true,
             maxHeight: '600px'
+        });
+        
+        // Force load and show first frame
+        video.addEventListener('loadeddata', () => {
+            video.currentTime = 0.1;
         });
         
         // Pause all videos when this one plays
