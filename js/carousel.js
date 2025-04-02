@@ -60,47 +60,47 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Function to create thumbnail previews
-    function createThumbnails() {
-        // Remove existing thumbnails
-        const existingThumbnails = container.parentElement.querySelectorAll('.thumbnail-preview');
-        existingThumbnails.forEach(thumb => thumb.remove());
+function createThumbnails() {
+    // Remove existing thumbnails
+    const existingThumbnails = container.parentElement.querySelectorAll('.thumbnail-preview');
+    existingThumbnails.forEach(thumb => thumb.remove());
 
-        if (slides.length <= 1) return;
+    if (slides.length <= 1) return;
 
-        // Create prev thumbnail
-        const prevIndex = (currentSlide - 1 + slides.length) % slides.length;
-        const prevThumb = document.createElement('div');
-        prevThumb.className = 'thumbnail-preview prev';
-        const prevVideo = createVideoElement(videoFiles[prevIndex], {
-            muted: true,
-            controls: false
-        });
-        prevThumb.appendChild(prevVideo);
-        container.appendChild(prevThumb);
+    // Create prev thumbnail
+    const prevIndex = (currentSlide - 1 + slides.length) % slides.length;
+    const prevThumb = document.createElement('div');
+    prevThumb.className = 'thumbnail-preview prev';
+    const prevVideo = createVideoElement(videoFiles[prevIndex], {
+        muted: true,
+        controls: false
+    });
+    prevThumb.appendChild(prevVideo);
+    container.appendChild(prevThumb);
 
-        // Create next thumbnail
-        const nextIndex = (currentSlide + 1) % slides.length;
-        const nextThumb = document.createElement('div');
-        nextThumb.className = 'thumbnail-preview next';
-        const nextVideo = createVideoElement(videoFiles[nextIndex], {
-            muted: true,
-            controls: false
-        });
-        nextThumb.appendChild(nextVideo);
-        container.appendChild(nextThumb);
+    // Create next thumbnail
+    const nextIndex = (currentSlide + 1) % slides.length;
+    const nextThumb = document.createElement('div');
+    nextThumb.className = 'thumbnail-preview next';
+    const nextVideo = createVideoElement(videoFiles[nextIndex], {
+        muted: true,
+        controls: false
+    });
+    nextThumb.appendChild(nextVideo);
+    container.appendChild(nextThumb);
 
-        // Add click/touch handlers to thumbnails
-        prevThumb.addEventListener('click', prevSlide);
-        nextThumb.addEventListener('click', nextSlide);
-        prevThumb.addEventListener('touchend', (e) => {
-            e.preventDefault();
-            prevSlide();
-        });
-        nextThumb.addEventListener('touchend', (e) => {
-            e.preventDefault();
-            nextSlide();
-        });
-    }
+    // Add click/touch handlers to thumbnails
+    prevThumb.addEventListener('click', prevSlide);
+    nextThumb.addEventListener('click', nextSlide);
+    prevThumb.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        prevSlide();
+    });
+    nextThumb.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        nextSlide();
+    });
+}
 
     // Add swipe functionality
     let touchStartX = 0;
