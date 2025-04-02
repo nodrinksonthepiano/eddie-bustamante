@@ -7,12 +7,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Array of video files with updated filenames (now using .mp4)
     const videoFiles = [
+        'videos/ScreenRecording_04-02-2025_15-46-58_1.mp4',
         'videos/ScreenRecording_04-02-2025_15-41-04_1.mp4',
         'videos/ScreenRecording_04-02-2025_15-41-32_1.mp4',
         'videos/ScreenRecording_04-02-2025_15-41-55_1.mp4',
         'videos/ScreenRecording_04-02-2025_15-42-34_1.mp4',
-        'videos/ScreenRecording_04-02-2025_15-43-35_1.mp4',
-        'videos/ScreenRecording_04-02-2025_15-46-58_1.mp4'
+        'videos/ScreenRecording_04-02-2025_15-43-35_1.mp4'
     ];
 
     // Function to create a video element
