@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
             controls: false
         });
         prevThumb.appendChild(prevVideo);
-        container.parentElement.appendChild(prevThumb);
+        container.appendChild(prevThumb);
 
         // Create next thumbnail
         const nextIndex = (currentSlide + 1) % slides.length;
@@ -87,20 +87,45 @@ document.addEventListener('DOMContentLoaded', () => {
             controls: false
         });
         nextThumb.appendChild(nextVideo);
-        container.parentElement.appendChild(nextThumb);
+        container.appendChild(nextThumb);
 
-        // Add click handlers to thumbnails
+        // Add click/touch handlers to thumbnails
         prevThumb.addEventListener('click', prevSlide);
         nextThumb.addEventListener('click', nextSlide);
+        prevThumb.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            prevSlide();
+        });
+        nextThumb.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            nextSlide();
+        });
     }
 
-    // Initialize carousel with videos
-    function initializeCarousel() {
-        videoFiles.forEach(videoFile => {
-            const slide = createVideoSlide(videoFile);
-            slides.push(slide);
-        });
-        updateCarousel();
+    // Add swipe functionality
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    container.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, false);
+
+    container.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    }, false);
+
+    function handleSwipe() {
+        const swipeThreshold = 50; // minimum distance for swipe
+        const swipeDistance = touchEndX - touchStartX;
+        
+        if (Math.abs(swipeDistance) > swipeThreshold) {
+            if (swipeDistance > 0) {
+                prevSlide();
+            } else {
+                nextSlide();
+            }
+        }
     }
 
     function updateCarousel() {
@@ -140,10 +165,16 @@ document.addEventListener('DOMContentLoaded', () => {
         updateCarousel();
     }
 
+    // Initialize carousel with videos
+    videoFiles.forEach(videoFile => {
+        const slide = createVideoSlide(videoFile);
+        slides.push(slide);
+    });
+
     // Event listeners
     nextButton.addEventListener('click', nextSlide);
     prevButton.addEventListener('click', prevSlide);
 
     // Initialize the carousel
-    initializeCarousel();
+    updateCarousel();
 }); 

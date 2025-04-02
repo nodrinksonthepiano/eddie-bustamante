@@ -132,6 +132,7 @@ h2 {
     justify-content: center;
     gap: 20px;
     padding: 0 60px;
+    min-height: 400px;
 }
 
 .carousel-container {
@@ -163,6 +164,7 @@ h2 {
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 2;
 }
 
 .thumbnail-preview:hover {
@@ -170,11 +172,11 @@ h2 {
 }
 
 .thumbnail-preview.prev {
-    left: -180px;
+    left: 10px;
 }
 
 .thumbnail-preview.next {
-    right: -180px;
+    right: 10px;
 }
 
 .thumbnail-preview video {
@@ -289,8 +291,38 @@ footer .container {
         font-size: 2rem;
     }
     
+    .carousel {
+        padding: 0 40px;
+        min-height: 300px;
+    }
+
     .carousel-container {
         min-height: 300px;
+        padding: 10px;
+    }
+
+    .thumbnail-preview {
+        width: 80px;
+        height: 45px;
+        display: flex !important; /* Force display on mobile */
+    }
+
+    .thumbnail-preview.prev {
+        left: 5px;
+    }
+
+    .thumbnail-preview.next {
+        right: 5px;
+    }
+
+    .carousel-button {
+        width: 30px;
+        height: 30px;
+        font-size: 16px;
+    }
+
+    .carousel-slide video {
+        max-height: 400px;
     }
 }
 
@@ -301,5 +333,19 @@ footer .container {
 
     .logo {
         width: 150px;
+    }
+
+    .carousel {
+        padding: 0 30px;
+        min-height: 250px;
+    }
+
+    .carousel-container {
+        min-height: 250px;
+    }
+
+    .thumbnail-preview {
+        width: 60px;
+        height: 34px;
     }
 } 
